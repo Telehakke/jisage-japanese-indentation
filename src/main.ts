@@ -1,7 +1,6 @@
 import { Plugin } from "obsidian";
 import getEditorLines from "./models/getEditorLines";
-import formattedHTML from "./models/formattedHTML";
-import Dompurify from "dompurify";
+import formattedChildNodes from "./models/formattedChildNodes";
 
 export default class JisagePlugin extends Plugin {
     async onload(): Promise<void> {
@@ -20,9 +19,15 @@ export default class JisagePlugin extends Plugin {
             if (editor == null) return;
 
             const editorLines = getEditorLines(editor, lineStart, lineEnd);
-            const newInnerHTML = formattedHTML(p.innerHTML, editorLines);
-            const cleanHTML = Dompurify.sanitize(newInnerHTML);
-            p.innerHTML = cleanHTML;
+            const childNode = formattedChildNodes(p, editorLines);
+
+            while (p.firstChild != null) {
+                p.removeChild(p.firstChild);
+            }
+
+            childNode.forEach((v) => {
+                p.appendChild(v);
+            });
         });
     }
 }
