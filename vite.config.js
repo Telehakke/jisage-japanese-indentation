@@ -13,4 +13,7 @@ export default defineConfig({
             external: ["obsidian"],
         },
     },
+    test: {
+        environment: "jsdom",
+    },
 });
