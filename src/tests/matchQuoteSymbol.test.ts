@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { matchQuoteSymbol } from "./match";
+import { matchQuoteSymbol } from "../models/match";
 
 test("引用を示す記号を取得できるかどうか", () => {
     const text = "> Quote";

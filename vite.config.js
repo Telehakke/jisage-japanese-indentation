@@ -6,10 +6,19 @@ export default defineConfig({
         emptyOutDir: false,
         lib: {
             entry: "src/main.ts",
-            fileName: (_, __) => "main.js",
+            fileName: () => "main.js",
             formats: ["cjs"],
         },
-        rollupOptions: {
+        rolldownOptions: {
+            output: {
+                assetFileNames(chunkInfo) {
+                    if (
+                        chunkInfo.names[0] === "jisage-japanese-indentation.css"
+                    )
+                        return "styles.css";
+                    return "assets/[name]-[hash][extname]";
+                },
+            },
             external: ["obsidian"],
         },
     },

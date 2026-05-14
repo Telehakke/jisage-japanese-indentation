@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { matchWhitespace } from "./match";
+import { matchWhitespace } from "../models/match";
 
 test("行頭の半角スペースを取得できるかどうか", () => {
     const text = " Line";

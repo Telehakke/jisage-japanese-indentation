@@ -1,6 +1,8 @@
 import { Plugin } from "obsidian";
-import getEditorLines from "./models/getEditorLines";
-import formattedChildNodes from "./models/formattedChildNodes";
+import { formattedChildNodes } from "./models/formattedChildNodes";
+import { getEditorLines } from "./models/getEditorLines";
+import { removeChildAll } from "./models/removeChildAll";
+import "./styles.css";
 
 export default class JisagePlugin extends Plugin {
     async onload(): Promise<void> {
@@ -9,25 +11,16 @@ export default class JisagePlugin extends Plugin {
         this.registerMarkdownPostProcessor((el, ctx) => {
             const p = el.querySelector("p");
             if (p == null) return;
-
-            const lineStart = ctx.getSectionInfo(el)?.lineStart;
-            const lineEnd = ctx.getSectionInfo(el)?.lineEnd;
-            if (lineStart == null) return;
-            if (lineEnd == null) return;
-
             const editor = this.app.workspace.activeEditor?.editor;
             if (editor == null) return;
+            const sectionInfo = ctx.getSectionInfo(el);
+            if (sectionInfo == null) return;
+            const { lineStart, lineEnd } = sectionInfo;
 
             const editorLines = getEditorLines(editor, lineStart, lineEnd);
-            const childNode = formattedChildNodes(p, editorLines);
-
-            while (p.firstChild != null) {
-                p.removeChild(p.firstChild);
-            }
-
-            childNode.forEach((v) => {
-                p.appendChild(v);
-            });
+            const childNodes = formattedChildNodes(p, editorLines);
+            removeChildAll(p);
+            childNodes.forEach((c) => p.appendChild(c));
         });
     }
 }
