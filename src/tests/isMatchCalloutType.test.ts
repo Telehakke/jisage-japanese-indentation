@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { isMatchCalloutType } from "./match";
+import { isMatchCalloutType } from "../models/match";
 
 test("コールアウトのタイプが含まれていると判定するかどうか1", () => {
     const text = ">[!NOTE] Title";

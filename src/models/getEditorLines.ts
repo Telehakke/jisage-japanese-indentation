@@ -4,10 +4,10 @@ import { isMatchCalloutType, matchQuoteSymbol } from "./match";
 /**
  * エディタを対象に、指定した範囲の行を配列で返す
  */
-const getEditorLines = (
+export const getEditorLines = (
     editor: Editor,
     lineStart: number,
-    lineEnd: number
+    lineEnd: number,
 ): string[] => {
     const editorLines: string[] = [];
     for (let i = lineStart; i <= lineEnd; i++) {
@@ -31,5 +31,3 @@ const getEditorLines = (
     }
     return editorLines;
 };
-
-export default getEditorLines;

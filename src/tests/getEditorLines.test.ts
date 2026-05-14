@@ -1,5 +1,3 @@
-import { expect, test } from "vitest";
-import getEditorLines from "./getEditorLines";
 import {
     Editor,
     EditorChange,
@@ -10,6 +8,8 @@ import {
     EditorSelectionOrCaret,
     EditorTransaction,
 } from "obsidian";
+import { expect, test } from "vitest";
+import { getEditorLines } from "../models/getEditorLines";
 
 class MockEditor implements Editor {
     private lines: string[] = [];
@@ -59,7 +59,7 @@ class MockEditor implements Editor {
         _replacement: string,
         _from: EditorPosition,
         _to?: EditorPosition,
-        _origin?: string
+        _origin?: string,
     ): void {
         throw new Error("Method not implemented.");
     }
@@ -122,9 +122,9 @@ class MockEditor implements Editor {
         _write: (
             line: number,
             lineText: string,
-            value: T | null
+            value: T | null,
         ) => EditorChange | void,
-        _ignoreEmpty?: boolean
+        _ignoreEmpty?: boolean,
     ): void {
         throw new Error("Method not implemented.");
     }
