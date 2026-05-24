@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 *.afdesign
-main.js
+/main.js
+/styles.css
