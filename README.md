@@ -1,4 +1,11 @@
-# Jisage -Japanese Indentation-
+# Jisage
+
+[version 1.1.2]  
+Changing the name to comply with the new plugin guidelines.
+
+新しいプラグインガイドラインに準拠するため、名前を変更します
+
+Jisage -Japanese Indentation- -> Jisage
 
 ## Features / 機能概要
 
